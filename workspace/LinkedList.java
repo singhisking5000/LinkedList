@@ -15,21 +15,6 @@ Problem:  Write a program that keeps and manipulates a linked list of
 	    choice, and error messages where appropriate.
 */
 public class LinkedList{
-
-
-
-
-
-
-
-
-
-// testing edits
-
-
-
-
-
   //instance varialbes go here (think about what you need to keep track of!)
   private int length = 0;
   private ListNode head;
@@ -44,8 +29,8 @@ public class LinkedList{
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    if(head == null){
-
+    if(head == null)
+    {
       head = ListNode(line, null);
       length++;
       return head;
@@ -53,8 +38,8 @@ public class LinkedList{
 
     //some kind of loop to find the right spot
     ListNode curr = head;
-    bool foundSpot = false;
-    while ((curr.getNext() != null) && curr.compareToIgnoreCase(curr.getNext()) <= 0)
+    Boolean foundSpot = false;
+    while ((curr.getNext() != null) && curr.getValue().compareToIgnoreCase(curr.getNext().getValue()) <= 0)
     {
         curr = curr.getNext();
     }
