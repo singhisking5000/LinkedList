@@ -40,19 +40,13 @@ public class LinkedList{
     //some kind of loop to find the right spot
     ListNode curr = head;
     bool foundSpot = false;
-    while ((curr.getNext() != null) && (foundSpot == false))
+    while ((curr.getNext() != null) && curr.compareToIgnoreCase(curr.getNext()) <= 0)
     {
-      if (curr.compareToIgnoreCase(curr.getNext()) <= 0)
-      {
         curr = curr.getNext();
-      } else if (curr.compareToIgnoreCase(curr.getNext()) > 0)
-      {
-        foundSpot = true;
-      } else 
-      {
-
-      }
     }
+    // add the new node 
+    curr.setNext(new ListNode(line, curr.getNext()));
+    
     
 
     return null;
