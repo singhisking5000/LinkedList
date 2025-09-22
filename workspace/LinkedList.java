@@ -16,6 +16,20 @@ Problem:  Write a program that keeps and manipulates a linked list of
 */
 public class LinkedList{
 
+
+
+
+
+
+
+
+
+// testing edits
+
+
+
+
+
   //instance varialbes go here (think about what you need to keep track of!)
   private int length = 0;
   private ListNode head;
