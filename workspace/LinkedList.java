@@ -30,35 +30,67 @@ public class LinkedList{
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
+    // If its the first element
     if(head == null){
-
-      head = ListNode(line, null);
+      head = new ListNode(line, null);
       length++;
       return head;
     }
 
-    //some kind of loop to find the right spot
+    // If not, find the spot its supposed to go
     ListNode curr = head;
-    bool foundSpot = false;
-    while ((curr.getNext() != null) && curr.compareToIgnoreCase(curr.getNext()) <= 0)
+    while ((curr.getNext() != null) && curr.getNext().getValue().compareToIgnoreCase(line) <= 0)
     {
+        // Keep going till you find the spot
         curr = curr.getNext();
     }
     // add the new node 
     curr.setNext(new ListNode(line, curr.getNext()));
-    
-    
-
-    return null;
+    length++;
+    return curr.getNext();
   }
+
+
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been deleted and returned.
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
-    return null;
+    if (head.getValue().equals(line))
+    {
+      if (head.getNext() != null)
+      {
+        ListNode temp = head.getNext();
+        length--;
+        return temp;
+      } else
+      {
+        head = head.getNext();
+        length--;
+      }
+    }
+
+
+    // Our current position
+    ListNode curr = head;
+    while (!(curr.getNext().getValue().equals(line)) && curr.getNext() != null)
+    {
+      // Find our target to delete
+      curr = curr.getNext();
+    }
+    if (curr.getNext() == null)
+    {
+      curr = null;
+      return null;
+    }
+    curr = new ListNode(curr.getValue(), curr.getNext().getNext());
+
+    return curr.getNext();
   }
+
+
+
 
   //precondition: the list has been initialized
   //postconditions: returns a string containing all values appended together with spaces between.
