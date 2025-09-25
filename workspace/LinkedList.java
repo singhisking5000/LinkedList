@@ -56,6 +56,7 @@ public class LinkedList{
   //postcondition: the ListNode containing the appropriate value has been deleted and returned.
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
+  // RETURN THE DELETED VALUES !!!!!!!!
   {
     // If the value is the head, set the head to the one that follows it
     if (head.getValue().equals(line) && !(head.getNext() == null))
@@ -65,9 +66,11 @@ public class LinkedList{
       return head;
     } else if (head.getValue().equals(line) && head.getNext() == null)
     {
+      // if the head is the one that follows, we 
+      ListNode deleted = head;
       head = null;
       length--;
-      return null;
+      return deleted;
     } else
     {
       // Our current position
@@ -119,5 +122,6 @@ public class LinkedList{
   public void clear()
   {
     head = null;
+    length = 0;
   }
 }
