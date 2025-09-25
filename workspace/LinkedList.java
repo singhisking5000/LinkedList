@@ -57,36 +57,37 @@ public class LinkedList{
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
-    if (head.getValue().equals(line))
+    // If the value is the head, set the head to the one that follows it
+    if (head.getValue().equals(line) && !(head.getNext() == null))
     {
-      if (head.getNext() != null)
-      {
-        ListNode temp = head.getNext();
-        length--;
-        return temp;
-      } else
-      {
-        head = head.getNext();
-        length--;
-      }
-    }
-
-
-    // Our current position
-    ListNode curr = head;
-    while (!(curr.getNext().getValue().equals(line)) && curr.getNext() != null)
+      head = head.getNext();
+      length--;
+      return head;
+    } else if (head.getValue().equals(line) && head.getNext() == null)
     {
-      // Find our target to delete
-      curr = curr.getNext();
-    }
-    if (curr.getNext() == null)
-    {
-      curr = null;
+      head = null;
+      length--;
       return null;
-    }
-    curr = new ListNode(curr.getValue(), curr.getNext().getNext());
+    } else
+    {
+      // Our current position
+      ListNode curr = head;
+      while (!(curr.getNext().getValue().equals(line)) && curr.getNext() != null)
+      {
+        // Find our target to delete
+        curr = curr.getNext();
+      }
+      if (curr.getNext() == null)
+      {
+        curr = null;
+        return null;
+      }
+      ListNode removed = curr.getNext();
+      curr.setNext(curr.getNext().getNext());
+      length--;
 
-    return curr.getNext();
+      return removed;
+    }
   }
 
 
@@ -96,13 +97,27 @@ public class LinkedList{
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
   {
-    return null;
+    String values = "";
+    if (head == null)
+    {
+      return "List is empty!";
+    }
+
+    ListNode curr = head;
+    values += curr.getValue();
+    while(curr.getNext() != null)
+    {
+      curr = curr.getNext();
+      values += curr.getValue();
+    }
+
+    return values; 
   }
 
   //precondition: the list has been initialized
   //postconditions: clears the list.
   public void clear()
   {
-  
+    head = null;
   }
 }

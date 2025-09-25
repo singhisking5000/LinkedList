@@ -17,7 +17,7 @@ public class Main{
         {
           if(input.length()>3 && input.substring(0, 3).equals("add"))
           {
-            System.out.println(list.addAValue(input.substring(4)).getValue());
+            System.out.println("Added: " + list.addAValue(input.substring(4)).getValue());
           }
           else if(input.equals("show"))
           {
@@ -29,6 +29,7 @@ public class Main{
           }
           else if(input.equals("clear"))
           {
+            System.out.println("List was cleared!");
             list.clear();
           }
           else if(!input.equals("exit")){
