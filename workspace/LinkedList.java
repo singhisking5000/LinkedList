@@ -29,47 +29,98 @@ public class LinkedList{
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    if(head == null)
-    {
-      head = ListNode(line, null);
+    // If its the first element
+    if(head == null){
+      head = new ListNode(line, null);
       length++;
       return head;
     }
 
-    //some kind of loop to find the right spot
+    // If not, find the spot its supposed to go
     ListNode curr = head;
-    Boolean foundSpot = false;
-    while ((curr.getNext() != null) && curr.getValue().compareToIgnoreCase(curr.getNext().getValue()) <= 0)
+    while ((curr.getNext() != null) && curr.getNext().getValue().compareToIgnoreCase(line) <= 0)
     {
-        curr = curr.getNext();
+      // Keep going till you find the spot
+      curr = curr.getNext();
     }
     // add the new node 
     curr.setNext(new ListNode(line, curr.getNext()));
-    
-    
-
-    return null;
+    length++;
+    return curr.getNext();
   }
+
+
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been deleted and returned.
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
+  // RETURN THE DELETED VALUES !!!!!!!!
   {
-    return null;
+    // If the value is the head, set the head to the one that follows it
+    if (head.getValue().equals(line) && !(head.getNext() == null))
+    {
+      head = head.getNext();
+      length--;
+      return head;
+    } else if (head.getValue().equals(line) && head.getNext() == null)
+    {
+      // if the head is the one that follows, we 
+      ListNode deleted = head;
+      head = null;
+      length--;
+      return deleted;
+    } else
+    {
+      // Our current position
+      ListNode curr = head;
+      while (!(curr.getNext().getValue().equals(line)) && curr.getNext() != null)
+      {
+        // Find our target to delete
+        curr = curr.getNext();
+      }
+      if (curr.getNext() == null)
+      {
+        curr = null;
+        return null;
+      }
+      ListNode removed = curr.getNext();
+      curr.setNext(curr.getNext().getNext());
+      length--;
+
+      return removed;
+    }
   }
+
+
+
 
   //precondition: the list has been initialized
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
   {
-    return null;
+    String values = "";
+    if (head == null)
+    {
+      return "List is empty!";
+    }
+
+    ListNode curr = head;
+    values += curr.getValue();
+    while(curr.getNext() != null)
+    {
+      curr = curr.getNext();
+      values += curr.getValue();
+    }
+
+    return values; 
   }
 
   //precondition: the list has been initialized
   //postconditions: clears the list.
   public void clear()
   {
-  
+    head = null;
+    length = 0;
   }
 }
