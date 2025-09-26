@@ -68,7 +68,7 @@ public class LinkedList{
   {
     if (length <= 0)
     {
-      return new ListNode("No Element To Remove", null);
+      return new ListNode("No Elements To Remove From", null);
     }
     if (!showValues().contains(" " + line + " "))
     {
@@ -138,4 +138,35 @@ public class LinkedList{
     head = null;
     length = 0;
   }
+  // 1 2 3 4 5 6 7 8
+  // head => tail
+  // 8 2 3 4 5 6 7 1
+
+
+  /*                              
+   *  !========== PART TWO ==========!
+   */                             
+
+
+  // Function that Reverses the ENTIRE list
+  public void reverse()
+  {
+    ListNode first = head;
+    ListNode second = head.getNext();
+    ListNode third = second.getNext();
+    while (third != null)
+    {
+      second.setNext(first);
+      first = second;
+      third = third.getNext();
+      second = third;
+    }
+  }
+
+  // Function that reverses the first 'n' elements of the list
+  public void nReverse(int n)
+  {
+
+  }
+
 }
