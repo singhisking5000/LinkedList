@@ -14,6 +14,19 @@ Problem:  Write a program that keeps and manipulates a linked list of
 	Output:  the results to the screen of each menu
 	    choice, and error messages where appropriate.
 */
+
+/*
+ *  Starter Code Provided by Mr. Menchukov
+ * 
+ *  LinkedList Class Written By Jamshed Kalsi
+ *  
+ *  add() ----> Adds a string element to the list, sorted into alphabetical order
+ *  remove() -> Removes a string element form the list (First instance of it if there are more than one)
+ *  show() ---> Shows the elements and length of the list
+ *  clear() --> Clears the list 
+ */
+
+
 public class LinkedList{
   //instance varialbes go here (think about what you need to keep track of!)
   private int length = 0;
@@ -24,7 +37,6 @@ public class LinkedList{
     head = null;
   }
  
-
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
@@ -49,20 +61,26 @@ public class LinkedList{
     return curr.getNext();
   }
 
-
-
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been deleted and returned.
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
-  // RETURN THE DELETED VALUES !!!!!!!!
   {
+    if (length <= 0)
+    {
+      return new ListNode("No Element To Remove", null);
+    }
+    if (!showValues().contains(" " + line + " "))
+    {
+      return new ListNode("Element Does Not Exist In The List", null);
+    }
     // If the value is the head, set the head to the one that follows it
     if (head.getValue().equals(line) && !(head.getNext() == null))
     {
+      ListNode deleted = head;
       head = head.getNext();
       length--;
-      return head;
+      return deleted;
     } else if (head.getValue().equals(line) && head.getNext() == null)
     {
       // if the head is the one that follows, we 
@@ -92,9 +110,6 @@ public class LinkedList{
     }
   }
 
-
-
-
   //precondition: the list has been initialized
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
@@ -106,14 +121,14 @@ public class LinkedList{
     }
 
     ListNode curr = head;
-    values += curr.getValue();
+    values += curr.getValue() + " ";
     while(curr.getNext() != null)
     {
       curr = curr.getNext();
-      values += curr.getValue();
+      values += curr.getValue() + " ";
     }
 
-    return values; 
+    return ("Length: " + length + " -=-=-=- Values: " + values); 
   }
 
   //precondition: the list has been initialized
