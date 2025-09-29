@@ -7,6 +7,7 @@ public class Main{
     public static void main(String[] args)
         throws IOException
     {
+      System.out.println("Main is now running");
         // Enter data using BufferReader
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
@@ -27,6 +28,10 @@ public class Main{
           else if(input.length() > 7 && input.substring(0, 6).equals("remove")){
               System.out.println("removing "+input.substring(7));
               System.out.println(list.deleteAValue(input.substring(7)).getValue());
+          }
+          else if(input.equals("reverse")){
+              System.out.println("Reversing the list!");
+              list.reverse();
           }
           else if(input.equals("clear"))
           {

@@ -20,10 +20,15 @@ Problem:  Write a program that keeps and manipulates a linked list of
  * 
  *  LinkedList Class Written By Jamshed Kalsi
  *  
+ *  Part A:
  *  add() ----> Adds a string element to the list, sorted into alphabetical order
  *  remove() -> Removes a string element form the list (First instance of it if there are more than one)
  *  show() ---> Shows the elements and length of the list
  *  clear() --> Clears the list 
+ * 
+ *  Part B:
+ *  reverse() --> Reverses the ENTIRE list
+ *  nReverse() -> Reverses the first 'n' elements of the list
  */
 
 
@@ -151,16 +156,23 @@ public class LinkedList{
   // Function that Reverses the ENTIRE list
   public void reverse()
   {
-    ListNode first = head;
-    ListNode second = head.getNext();
-    ListNode third = second.getNext();
-    while (third != null)
+    // Declared these guys
+    ListNode first = null;
+    ListNode second = head;
+    ListNode third = head.getNext();
+
+    while (second != null)
     {
+      System.out.println(second.getValue());
       second.setNext(first);
       first = second;
-      third = third.getNext();
       second = third;
+      if (third.getNext() != null)
+      {
+        third = third.getNext();
+      }
     }
+    first.setNext(null);
   }
 
   // Function that reverses the first 'n' elements of the list
