@@ -167,12 +167,12 @@ public class LinkedList{
       second.setNext(first);
       first = second;
       second = third;
-      if (third.getNext() != null)
+      if (third != null)
       {
         third = third.getNext();
       }
     }
-    first.setNext(null);
+    head = first;
   }
 
   // Function that reverses the first 'n' elements of the list
