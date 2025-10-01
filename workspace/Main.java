@@ -33,6 +33,11 @@ public class Main{
               System.out.println("Reversing the list!");
               list.reverse();
           }
+          else if (input.length()>7 && input.substring(0,7).equals("reverse")) 
+          {
+            System.out.println("Reversing the first " + Integer.parseInt(input.substring(8)) + " elements of the list!");
+            list.nReverse(Integer.parseInt(input.substring(8)));
+          }
           else if(input.equals("clear"))
           {
             System.out.println("List was cleared!");

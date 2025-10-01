@@ -178,7 +178,55 @@ public class LinkedList{
   // Function that reverses the first 'n' elements of the list
   public void nReverse(int n)
   {
+    /* Help from GeekForGeeks:
+     * https://www.geeksforgeeks.org/dsa/reverse-first-k-elements-given-linked-list/# 
+     * Steps (in order)
+     *
+     * 1) Traverse the linked list till n-th point.
+     * 
+     * 2) Break the linked list in to two parts from n-th point. After partition
+     * linked list will look like 1->2->3->NULL & 4->5->NULL
+     * 
+     * 3) Reverse first part of the linked list leave second part as it is
+     * 3->2->1->NULL and 4->5->NULL
+     * 
+     * 4) Join both the parts of the linked list, we get 3->2->1->4->5->NULL
+     */
+    if (n < length)
+    {
+      // Find our nthNode
+      ListNode nthNode = head;
+      for (int i = 1; i < n; i++)
+      {
+        nthNode = nthNode.getNext();
+      }
 
+      // For later, to seam it back together
+      ListNode untouchedRegion = nthNode.getNext();
+      
+      // This creates a break point where we stop and reverses the first part
+      nthNode.setNext(null);
+      reverse();
+
+      // Go through the list and find the break point so we can set its next to
+      // the old spot, to sew the seam
+      ListNode curr = head;
+      while(curr.getNext() != null)
+      {
+        curr = curr.getNext();
+      }
+
+      // Connects it!
+      curr.setNext(untouchedRegion);
+    } 
+    else if (n == length)
+    {
+      reverse();
+    }
+    else
+    {
+      System.out.println("OVERFLOW ERROR - PLEASE TRY AGAIN");
+    }
+    
   }
-
 }
