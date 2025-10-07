@@ -192,41 +192,87 @@ public class LinkedList{
      * 
      * 4) Join both the parts of the linked list, we get 3->2->1->4->5->NULL
      */
-    if (n < length)
-    {
-      // Find our nthNode
-      ListNode nthNode = head;
-      for (int i = 1; i < n; i++)
-      {
-        nthNode = nthNode.getNext();
-      }
 
-      // For later, to seam it back together
-      ListNode untouchedRegion = nthNode.getNext();
+    System.out.println("nreversing with "+n);
+
+
+      // Declared these guys
+    ListNode first = null;
+    ListNode second = head;
+    ListNode third = head.getNext();
+    ListNode endOfWhatWeJustReversed= head;
+    ListNode endOfReversedRegion = null;
+
+    while(second!= null){
+
+      for(int i =0; i<n && second!=null; i++)
+      {
+        System.out.println(second.getValue());
+        second.setNext(first);
+        first = second;
+        second = third;
+        if (third != null)
+        {
+          third = third.getNext();
+        }
+        
+        //endOfReversedRegion;
+      }
+      if(endOfReversedRegion != null){
+          endOfReversedRegion.setNext(first);
+      }
+      else
+      {
+        head = first;
+      }
+      endOfWhatWeJustReversed.setNext(second);
+      endOfReversedRegion = endOfWhatWeJustReversed;
+      endOfWhatWeJustReversed = second;
+    }
+
+// PRECURSOR MODEL OF MY WORK - I LIKE IT
+  //   if (n < length)
+  //   {
+  //     // Find our nthNode
+  //     ListNode nthNode = head;
       
-      // This creates a break point where we stop and reverses the first part
-      nthNode.setNext(null);
-      reverse();
+      
+      
+      
+  //     //loop until the end
+  //     for (int i = 1; i < n; i++)
+  //     {
+  //       nthNode = nthNode.getNext();
+  //     }
 
-      // Go through the list and find the break point so we can set its next to
-      // the old spot, to sew the seam
-      ListNode curr = head;
-      while(curr.getNext() != null)
-      {
-        curr = curr.getNext();
-      }
+      
 
-      // Connects it!
-      curr.setNext(untouchedRegion);
-    } 
-    else if (n == length)
-    {
-      reverse();
-    }
-    else
-    {
-      System.out.println("OVERFLOW ERROR - PLEASE TRY AGAIN");
-    }
+  //     // For later, to seam it back together
+  //     ListNode untouchedRegion = nthNode.getNext();
+      
+  //     // This creates a break point where we stop and reverses the first part
+  //     nthNode.setNext(null);
+  //     reverse();
+
+  //     // Go through the list and find the break point so we can set its next to
+  //     // the old spot, to sew the seam
+  //     ListNode curr = head;
+  //     while(curr.getNext() != null)
+  //     {
+  //       curr = curr.getNext();
+  //     }
+
+  //     // Connects it!
+  //     curr.setNext(untouchedRegion);
+  //   } 
+  //   else if (n == length)
+  //   {
+  //     reverse();
+  //   }
+  //   else
+  //   {
+  //     System.out.println("OVERFLOW ERROR - PLEASE TRY AGAIN");
+  //   }
     
   }
 }

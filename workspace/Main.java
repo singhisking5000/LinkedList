@@ -35,7 +35,7 @@ public class Main{
           }
           else if (input.length()>7 && input.substring(0,7).equals("reverse")) 
           {
-            System.out.println("Reversing the first " + Integer.parseInt(input.substring(8)) + " elements of the list!");
+            System.out.println("Reversing the list in groups of " + Integer.parseInt(input.substring(8)) + "!");
             list.nReverse(Integer.parseInt(input.substring(8)));
           }
           else if(input.equals("clear"))
